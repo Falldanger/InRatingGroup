@@ -60,6 +60,13 @@ class CommentController extends Controller
             return response($validator->messages()->toArray());
         }
 
+        //SQL(Instead commentator_id = 1 could be any number)
+
+//        select comments.* from comments
+//        inner join posts on comments.post_id = posts.id
+//        where posts.image_id is not null and comments.commentator_id = 1
+//        order by comments.created_at desc;
+
         $comments = $this->comment
             ->withTrashed()
             ->select('comments.*')
